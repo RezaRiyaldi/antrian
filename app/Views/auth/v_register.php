@@ -59,11 +59,11 @@
                                 <input type="text" name="nama_lengkap" class="form-control bg-dark text-white" placeholder="Masukan Nama Lengkap" value="<?= old('nama_lengkap') ?>">
                             </div>
                             <div class="row">
-                                <div class="col mb-3">
+                                <div class="col-6 mb-3">
                                     <label for="" class="form-label">Password</label>
                                     <input type="password" name="password" class="form-control bg-dark text-white" placeholder="Masukan password">
                                 </div>
-                                <div class="col mb-3">
+                                <div class="col-6 mb-3">
                                     <label for="" class="form-label">Confirm Password</label>
                                     <input type="password" name="cpassword" class="form-control bg-dark text-white" placeholder="Masukan password">
                                 </div>

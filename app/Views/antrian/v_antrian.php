@@ -19,7 +19,7 @@
             ->orderBy('status', 'asc')
             ->get()->getResultArray();
     ?>
-        <div class="col-md-4">
+        <div class="col-md-4 mb-3">
             <div class="card bg-transparent border-secondary">
                 <ul class="list-group list-group-flush">
                     <?php

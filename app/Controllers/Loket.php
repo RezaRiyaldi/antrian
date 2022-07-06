@@ -62,9 +62,13 @@ class Loket extends BaseController
     public function tambah_loket()
     {
         // $getLoket = $this->db->join('pelayanan', 'pelayanan.id_pelayanan = loket.pelayanan_id')->get()->getResultArray();        
-        $getPelayanan = Database::connect()->table('pelayanan')->get()->getResultArray();
+        // $getPelayanan = Database::connect()->table('pelayanan')->get()->getResultArray();
+        $getPelayanan = Database::connect()->table('pelayanan')
+        ->join('loket', 'loket.pelayanan_id = pelayanan.id_pelayanan', 'left')
+        ->where('id_loket', null)
+        ->get()->getResultArray();
 
-        // var_dump($getPelayanan); die;
+        // dd($getPelayanan);
 
         $data = [
             'title' => 'Tambah Loket',

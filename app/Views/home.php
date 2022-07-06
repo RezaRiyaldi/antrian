@@ -43,7 +43,7 @@
 
         // dd($loket);
     ?>
-        <div class="col-md-3">
+        <div class="col-md-3 mb-3">
             <div class="card border-<?= $bg ?> bg-transparent">
                 <div class="card-body">
                     <h2 class="my-3"><?= $antrian != NULL ? $antrian['kode_antrian'] : '-' ?></h2>

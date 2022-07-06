@@ -20,7 +20,7 @@ class Pelayanan extends BaseController
     }
     public function index()
     {
-        $getPelayanan = $this->db->join('loket', 'loket.pelayanan_id = pelayanan.id_pelayanan')->get()->getResultArray();
+        $getPelayanan = $this->db->join('loket', 'loket.pelayanan_id = pelayanan.id_pelayanan', 'left')->get()->getResultArray();
 
         // dd($getPelayanan);
         // $getPelayanan = $this->pelayanan->findAll();
