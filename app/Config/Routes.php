@@ -56,7 +56,8 @@ $routes->get('pelayanan/hapus/(:num)', 'Pelayanan::delete_pelayanan/$1');
 
 // Loket
 $routes->get('loket', 'Loket::index');
-$routes->get('loket/tambah', 'loket::tambah_loket');
+$routes->get('loket/detail/(:num)/(:num)', 'Loket::detail_loket/$1/$2');
+$routes->get('loket/tambah', 'Loket::tambah_loket');
 
 $routes->post('tambah-loket', 'Loket::proses_tambah_loket');
 
@@ -67,6 +68,11 @@ $routes->get('loket/hapus/(:num)', 'Loket::delete_loket/$1');
 
 // Antrian
 $routes->get('antrian', 'Antrian::index');
+$routes->get('antrian/get/(:num)/(:num)', 'Antrian::ambil_antrian/$1/$2');
+
+$routes->get('antrian/panggil/(:num)', 'Antrian::panggil/$1');
+$routes->get('antrian/selesai/(:num)', 'Antrian::selesai/$1');
+$routes->get('antrian/selesai-danger', 'Antrian::selesai_paksa');
 
 /*
  * --------------------------------------------------------------------

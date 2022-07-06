@@ -17,24 +17,24 @@
         $no = 1;
         if ($loket) :
             foreach ($loket as $row) :
-                $button = "btn-primary";
+                $bg = "btn-primary";
 
                 if ($no % 5 == 0) {
-                    $button = "btn-light";
+                    $bg = "btn-light";
                 } else if ($no % 4 == 0) {
-                    $button = "btn-warning";
+                    $bg = "btn-warning";
                 } else if ($no % 3 == 0) {
-                    $button = "btn-info";
+                    $bg = "btn-info";
                 } else if ($no % 2 == 0) {
-                    $button = "btn-danger";
+                    $bg = "btn-danger";
                 }
 
                 $no++;
         ?>
                 <div class="col-xl-3 col-md-4 col-sm-6 col-12 mb-3">
-                    <button class="btn <?= $button ?> w-100 p-3">
+                    <a href="<?= base_url() ?>/loket/detail/<?= $row['id_loket'] ?>/<?= $row['pelayanan_id'] ?>" class="btn <?= $bg ?> w-100 p-3">
                         <h4 class="my-auto"><?= $row['nama_loket'] ?></h4>
-                    </button>
+                    </a>
                 </div>
             <?php endforeach;
         else : ?>
@@ -67,10 +67,17 @@
                                 foreach ($loket as $row) :
                                 ?>
                                     <tr>
-                                        <td><?= $no++ ?></td>
-                                        <td><?= $row['nama_loket'] ?></td>
-                                        <td><?= $row['nama_pelayanan'] ?></td>
+                                        <td class="align-middle"><?= $no++ ?></td>
+                                        <td class="align-middle">
+                                            <a href="<?= base_url() ?>/loket/detail/<?= $row['id_loket'] ?>/<?= $row['id_pelayanan'] ?>" class="text-info">
+                                                <?= $row['nama_loket'] ?>
+                                            </a>
+                                        </td>
+                                        <td class="align-middle"><?= $row['nama_pelayanan'] ?></td>
                                         <td>
+                                            <a href="<?= base_url() ?>/loket/detail/<?= $row['id_loket'] ?>/<?= $row['id_pelayanan'] ?>" class="btn btn-info btn-sm">
+                                                Detail
+                                            </a>
                                             <a href="<?= base_url() ?>/loket/ubah/<?= $row['id_loket'] ?>" class="btn btn-sm btn-warning">Edit</a>
                                             <a href="<?= base_url() ?>/loket/hapus/<?= $row['id_loket'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus <?= $row['nama_loket'] ?>?')">Delete</a>
                                         </td>

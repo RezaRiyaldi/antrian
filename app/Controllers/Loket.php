@@ -28,6 +28,37 @@ class Loket extends BaseController
         return view('loket/v_loket', $data);
     }
 
+    public function detail_loket($id_loket, $id_pelayanan)
+    {
+        $tableAntrian = Database::connect()->table('antrian')
+            ->join('loket', 'loket.id_loket = antrian.loket_id', 'left')
+            ->where('id_loket', $id_loket)
+            ->where('antrian.pelayanan_id', $id_pelayanan)
+            ->where('created_at', date('Y-m-d'))
+            ->orderBy('status', 'asc');
+
+        $antrian = $tableAntrian->get()->getResultArray();
+
+        $antrianNow = $tableAntrian->where('status', 1)
+            ->where('loket_id', $id_loket)
+            ->where('pelayanan_id', $id_pelayanan)
+            ->where('created_at', date('Y-m-d'))
+            ->get()->getFirstRow();
+
+        $loket = Database::connect()->table('loket')
+            ->where('id_loket', $id_loket)
+            ->get()->getRowArray();
+
+        $data = [
+            'title' => 'List Loket',
+            'antrian' => $antrian,
+            'antrianNow' => $antrianNow,
+            'loket' => $loket
+        ];
+
+        return view('loket/v_detail_loket', $data);
+    }
+
     public function tambah_loket()
     {
         // $getLoket = $this->db->join('pelayanan', 'pelayanan.id_pelayanan = loket.pelayanan_id')->get()->getResultArray();        
