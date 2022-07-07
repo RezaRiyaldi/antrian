@@ -20,12 +20,13 @@ Berikut link [Youtube](https://youtu.be/J9y2jHKN_Yw) untuk melihat sekilas tenta
      - Username: `admin`
      - Password: `admin`
 
-- Apabila **BELUM** login:
-  1. Ambil nomor antrian
-  2. Melihat Daftar Loket
-  3. Melihat Detail Loket
-  4. Melihat Daftar Antrian
-- Apabila **SUDAH** login:
-  1. CRUD Pelayanan
-  2. CRUD Loket
-  3. Melihat, mengelola antrian
+3. Apabila **BELUM** login:
+  * Ambil nomor antrian
+  * Melihat Daftar Loket
+  * Melihat Detail Loket
+  * Melihat Daftar Antrian
+4. Apabila **SUDAH** login:
+  * CRUD Pelayanan
+  * CRUD Loket
+  * Melihat, mengelola antrian
+5. Filter Perhari Ini
