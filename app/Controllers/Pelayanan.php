@@ -114,11 +114,12 @@ class Pelayanan extends BaseController
             'nama_pelayanan' => ucwords(strtolower($this->request->getPost('nama_pelayanan')))
         ];
 
-        $getPelayanan = $this->db->getWhere(['id_pelayanan' => $id_pelayanan, 'kode_pelayanan' => $data['kode_pelayanan']])->getRow();
+        // $getPelayanan = $this->db->getWhere(['id_pelayanan' => $id_pelayanan, 'kode_pelayanan' => $data['kode_pelayanan']])->getRow();
+        $getPelayanan = Database::connect()->table('pelayanan')
+        ->where('id_pelayanan', $id_pelayanan)
+        ->get()->getRowArray();
 
-        // var_dump($getPelayanan); die;
-
-        if ($getPelayanan) {
+        if (count($getPelayanan) > 0) {
             $this->db->update($data, ['id_pelayanan' => $id_pelayanan]);
             $type_message = 'success';
             $message = 'Berhasil merubah pelayanan';

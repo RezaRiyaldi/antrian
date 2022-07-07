@@ -44,8 +44,30 @@
                                 }
                                 ?>
                                 <p class="my-auto badge bg-<?= $bg ?> text-uppercase"><?= $status ?></p>
-                                <!-- <?//= session()->logged_in ? '<a href="#" class="btn btn-success btn-sm">Panggil</a>' : '' ?> -->
-                                
+                                <?php
+                                $antrianNow = Database::connect()->table('antrian')
+                                    ->where('status', 1)
+                                    ->where('loket_id', $value['loket_id'])
+                                    ->where('pelayanan_id', $value['pelayanan_id'])
+                                    ->where('created_at', date('Y-m-d'))
+                                    ->get()->getFirstRow();
+
+                                // dd($antrianNow);
+                                ?>
+
+                                <?php if (session()->logged_in) : ?>
+                                    <?php if ($value['status'] == 0 && $antrianNow == NULL) : ?>
+                                        <a href="<?= base_url() ?>/antrian/panggil/<?= $value['id_antrian'] ?>" class="btn btn-success btn-sm">Panggil</a>
+                                    <?php elseif ($value['status'] == 1) : ?>
+                                        <a href="<?= base_url() ?>/antrian/selesai/<?= $value['id_antrian'] ?>" class="btn btn-sm btn-primary">Selesai</a>
+                                    <?php elseif ($value['status'] == 2) : ?>
+                                        <div class="btn btn-sm btn-outline-info disabled" disabled>Done</div>
+                                    <?php else : ?>
+                                        <div class="btn btn-sm btn-secondary disabled" disabled>Wait</div>
+                                    <?php endif ?>
+                                <?php endif ?>
+
+
                             </li>
                         <?php endforeach;
                     else : ?>
@@ -57,9 +79,10 @@
                 <a href="<?= base_url() ?>/loket/detail/<?= $loket['id_loket'] ?>/<?= $loket['id_pelayanan'] ?>" class="card-footer bg-primary text-white text-decoration-none">
                     <h4 class="my-auto text-center"><?= $loket['nama_loket'] ?></h4>
                     <h6 class="my-auto text-center"><?= $loket['nama_pelayanan'] != NULL ? $loket['nama_pelayanan'] : '-' ?></h6>
-                    </a>
+                </a>
             </div>
         </div>
     <?php endforeach ?>
 </div>
-<?= $this->endSection();// dd($antrian) ?>
+<?= $this->endSection(); // dd($antrian) 
+?>
